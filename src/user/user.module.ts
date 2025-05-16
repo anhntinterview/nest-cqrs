@@ -11,5 +11,6 @@ import { KafkaModule } from 'src/kafka/kafka.module';
   imports: [CqrsModule, PrismaModule, RedisModule, KafkaModule],
   providers: [UserService, CreateUseHandler],
   controllers: [UserController],
+  exports: [UserService],
 })
 export class UserModule {}

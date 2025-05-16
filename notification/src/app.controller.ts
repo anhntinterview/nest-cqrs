@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
-import { User } from '@prisma/client';
+import { Product, User } from '@prisma/client';
 
 @Controller()
 export class AppController {
@@ -11,6 +11,16 @@ export class AppController {
     return {
       success: true,
       message: `User '${user.name}' created successfully`,
+    };
+  }
+
+  @MessagePattern('product.created')
+  handleProductCreated(@Payload() product: Product) {
+    console.log('📦 [NotificationService] Received product:', product);
+
+    return {
+      succes: true,
+      message: `Product ${product.name} created successfully`,
     };
   }
 }
